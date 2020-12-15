@@ -14,6 +14,7 @@ export class TechList extends Component {
                 <li>{ this.props.tech.professionalLevel}</li>
                 <li>{ this.props.tech.hourRate}</li>
                 <li>{ this.props.tech.monthlyCapacity}</li>
+                <button onClick={this.props.deleteTech.bind(this, id)} className='X'>X</button>
             </ul>
             </div>
         )

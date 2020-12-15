@@ -21,12 +21,16 @@ class App extends Component {
     }
     this.setState({ DBTechnicians: [...this.state.DBTechnicians, newTech]})
   }
+  deleteTech = (id) => {
+    this.setState({DBTechnicians: [...this.state.DBTechnicians.filter(tech => tech.id !== id)]})
+  }
   render(){
     return(
       <div className='App'>
         <Header />
-        <Tech DBTechnicians={this.state.DBTechnicians}  />
-        <AddTech AddTech={this.AddTech} />
+        <Tech DBTechnicians = {this.state.DBTechnicians}
+        deleteTech = {this.deleteTech}/>
+        <AddTech AddTech = {this.AddTech} />
       </div>
     );
   }

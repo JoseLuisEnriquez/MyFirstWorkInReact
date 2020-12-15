@@ -4,7 +4,9 @@ import TechList from './TechList';
 class Techs extends Component {
   render() {
     return this.props.DBTechnicians.map(tech =>(
-       <TechList key={tech.id} tech={tech}/>
+       <TechList key={tech.id} tech={tech}
+       deleteTech={this.props.deleteTech}
+       />
     )) ;
   }
 }
