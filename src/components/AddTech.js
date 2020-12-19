@@ -10,11 +10,35 @@ export class AddTech extends Component {
         professionalLevel: '',
         hourRate: '',
         monthlyCapacity: ''
+    };
+
+    componentDidUpdate(prevProps, prevState){
+        if(this.props.isEditing && this.props.isEditing !== prevProps.isEditing){
+            this.handleEdit(this.props.technicianToEdit);
+        }
     }
+
+    handleEdit = (technicianToEdit) => {
+        this.setState({
+            id: technicianToEdit.id,
+            firstName: technicianToEdit.firstName,
+            lastName: technicianToEdit.lastName,
+            email: technicianToEdit.email,
+            boilersTypeId: technicianToEdit.boilersTypeId,
+            professionalLevel: technicianToEdit.professionalLevel,
+            hourRate: technicianToEdit.hourRate,
+            monthlyCapacity: technicianToEdit.monthlyCapacity,
+        });
+    };
+
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.AddTech(this.state);
-        this.setState({
+        if(this.props.isEditing){
+            this.props.editTech(this.state);
+        } else {
+            this.props.AddTech(this.state);
+        }
+        return this.setState({
             id: '',
             firstName: '',
             lastName: '',
@@ -25,11 +49,13 @@ export class AddTech extends Component {
             monthlyCapacity: ''
         });
     }
+
     onChange = (e) => this.setState({[e.target.name]:e.target.value});
     render() {
+        const { isEditing } = this.props
         return(
             <form onSubmit={this.onSubmit}>
-                <h2>Add new Technician</h2>
+                <h2>{isEditing ? 'Edit Technician' : 'Add New Technician'}</h2>
                 <input
                     type = 'text'
                     name = 'id'

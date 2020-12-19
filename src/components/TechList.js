@@ -1,23 +1,49 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class TechList extends Component {
     render() {
-        const {id} = this.props.tech;
-        return (
-            <div className='box'>
-            <ul>
-                <li className='id'>{ this.props.tech.id }</li>
-                <li>{ this.props.tech.firstName}</li>
-                <li>{ this.props.tech.lastName}</li>
-                <li>{ this.props.tech.email}</li>
-                <li>{ this.props.tech.boilersTypeId}</li>
-                <li>{ this.props.tech.professionalLevel}</li>
-                <li>{ this.props.tech.hourRate}</li>
-                <li>{ this.props.tech.monthlyCapacity}</li>
-                <button onClick={this.props.deleteTech.bind(this, id)} className='X'>X</button>
-            </ul>
-            </div>
-        )
+      return (
+        <div className="box">
+          <table>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Boiler Type Id</th>
+              <th>Profesional Level</th>
+              <th>Hour Rate</th>
+              <th>Monthly Capacity</th>
+              <th>Remove</th>
+            </tr>
+            <tr>
+              <td className="id">{this.props.tech.id}</td>
+              <td>
+                {this.props.tech.firstName}
+                {this.props.tech.lastName}
+              </td>
+              <td>{this.props.tech.email}</td>
+              <td>{this.props.tech.boilersTypeId}</td>
+              <td>{this.props.tech.professionalLevel}</td>
+              <td>{this.props.tech.hourRate}</td>
+              <td>{this.props.tech.monthlyCapacity}</td>
+              <td>
+                <button
+                  onClick={() => this.props.deleteTech(this.props.id)}
+                  className="X"
+                >
+                  X
+                </button>
+                <button
+                  onClick={() => this.props.handleEdit(this.props.tech)}
+                >
+                  Edit
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      );
     }
-}
+  }
+
 export default TechList
